@@ -218,28 +218,37 @@ map.on("load", () => {
 });
 
 
-
 map.on("click", "risk-layer", function (e) {
   const props = e.features[0].properties;
   const score = props[currentRiskVar];
   const scoreDisplay = score !== undefined && score !== null ? score : "Indisponible";
 
-  console.log("🧪 Debug click:", {
-    commune: props.NOM,
-    population: props.POPULATION,
-    score: score,
-    currentRiskVar: currentRiskVar
-  });
+  const isMulti = multiRisks.some(r => r.value === currentRiskVar);
+  const currentMultiLabel = multiRisks.find(r => r.value === currentRiskVar)?.label || "Multi-Risk Score";
+
+  let content = `
+    <div style="background: rgba(0,0,0,0.85); padding: 10px; border-radius: 5px; color: white;">
+      <strong>${props.NOM || "Commune inconnue"}</strong><br>
+      👥 Population : ${props.POPULATION ? props.POPULATION.toLocaleString() : "?"}<br>
+  `;
+
+  if (isMulti) {
+    content += `⚠️ <strong>${currentMultiLabel}:</strong> ${scoreDisplay}<br>`;
+    content += `<br><strong>📊 Individual Risk Scores:</strong><br>`;
+    simpleRisks.forEach(risk => {
+      const val = props[risk.value];
+      if (val !== undefined && val !== null && val !== "") {
+        content += `• ${risk.label}: ${val}<br>`;
+      }
+    });
+  } else {
+    content += `⚠️ Score : ${scoreDisplay}<br>`;
+  }
+
+  content += `</div>`;
 
   new mapboxgl.Popup()
     .setLngLat(e.lngLat)
-    .setHTML(`
-      <div style="background: rgba(0,0,0,0.85); padding: 10px; border-radius: 5px; color: white;">
-        <strong>${props.NOM}</strong><br>
-        👥 Population : ${props.POPULATION.toLocaleString()}<br>
-        ⚠️ Score : ${scoreDisplay}
-      </div>
-    `)
+    .setHTML(content)
     .addTo(map);
 });
-
