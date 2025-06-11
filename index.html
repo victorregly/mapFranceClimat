@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Carte 3D des Communes en France</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+  <!-- Mapbox GL JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css" rel="stylesheet" />
+
+  <!-- Mapbox Token -->
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoidmljdG9ycmVnbHkiLCJhIjoiY21hd2Z1Ym5oMGVxcDJtb2VkdTc5d3htNCJ9.hSc1HG4KVUHo94vV9t5zEQ';
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="stylesheets/style.css" />
+</head>
+
+<body>
+  <!-- 🗺️ Carte -->
+  <div id="map"></div>
+
+  <!-- Script principal -->
+  <script src="scripts/map_france.js"></script>
+
+  <div id="legend" style="
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: sans-serif;
+  font-size: 13px;
+  z-index: 9999;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+">
+  <strong>Risk Score</strong><br>
+  <div style="display: flex; flex-direction: column; gap: 3px; margin-top: 5px;">
+    <div><span style="display:inline-block;width:20px;height:12px;background:#ffffff;"></span> 0</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#ffffcc;"></span> 1</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#ffeda0;"></span> 2</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#fed976;"></span> 3</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#feb24c;"></span> 4</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#fd8d3c;"></span> 5</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#fc4e2a;"></span> 6</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#e31a1c;"></span> 7</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#bd0026;"></span> 8</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#800026;"></span> 9</div>
+    <div><span style="display:inline-block;width:20px;height:12px;background:#4d0019;"></span> 10</div>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
