@@ -1,3 +1,13 @@
+## Quick Start
+Clone the repo and serve locally:
+```bash
+git clone https://github.com/victorregly/mapFranceClimat.git && cd mapFranceClimat
+# Mac / Linux
+python3 -m http.server 8000
+# Windows
+python -m http.server 8000
+
+
 # mapFranceClimat
 
 `mapFranceClimat` is a JavaScript-based 3D web mapping module designed to visualize **municipality-level climate risk exposure across France**.
